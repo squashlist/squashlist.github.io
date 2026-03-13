@@ -6,7 +6,7 @@ export default defineConfig(({command}) => {
 
     return {
       plugins: [vue()],
-      base: command === 'build' ? '/squashlist/' : '/',
+      base: '/',
       build: {
         outDir: 'docs'
       }
