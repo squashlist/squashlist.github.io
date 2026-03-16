@@ -18,7 +18,8 @@ import {
     faFaceSmile,
     faArrowDownAZ,
     faArrowUpZA,
-    faTv
+    faTv,
+    faMicrophone
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -35,7 +36,8 @@ library.add(
     faFaceFrown,
     faFaceSmile,
     faArrowDownAZ,
-    faArrowUpZA
+    faArrowUpZA,
+    faMicrophone
 )
 
 createApp(App)
