@@ -1,5 +1,5 @@
 <script setup>
-import { ref, unref, onMounted } from 'vue'
+import { ref, unref, onMounted, computed, watch } from 'vue'
 
 import SlHeader from './components/Header.vue'
 import SlFooter from './components/Footer.vue'
@@ -17,8 +17,23 @@ const dbRef = fbRef(db)
 const categories = ref([])
 const error = ref('')
 
-const visits =  ref(0)
+const visits = ref(0)
 const token = '*K^3j3YCB80cjijCxNg9JC2AlWyXBZh*zlcbaAilqL2YGx8q9CHcj5dJ$UgFcGooPV*lD5kpkOQswP4zcH$7GB6&ZifR009NFid'
+
+// Search
+const searchQuery = ref('')
+
+// Dark mode — persisted to localStorage
+const darkMode = ref(localStorage.getItem('darkMode') === 'true')
+watch(darkMode, val => {
+	document.documentElement.classList.toggle('dark', val)
+	localStorage.setItem('darkMode', val)
+}, { immediate: true })
+
+// Total resource count across all categories
+const totalCount = computed(() =>
+	categories.value.reduce((sum, cat) => sum + (cat.items?.length ?? 0), 0)
+)
 
 onMounted(() => {
 	getData()
@@ -79,39 +94,37 @@ const setVisits = () => {
 </script>
 
 <template>
-    <sl-header />
+	<sl-header
+		:categories="categories"
+		:total-count="totalCount"
+		v-model:search="searchQuery"
+		v-model:dark-mode="darkMode"
+	/>
 	<div class="wrapper">
 		<main class="container" id="main">
-			<div class="loading" v-if="!categories.length">
-				<img src="/icon.svg" alt="loading icon" width="40">
-				<span class="sr-only">Loading lists...</span>
-			</div>
-			<div v-if="error" class="error">
+			<template v-if="!categories.length && !error">
+				<div class="skeleton-col" v-for="n in 4" :key="n">
+					<div class="skeleton-h2"></div>
+					<div class="skeleton-item" v-for="m in 5" :key="m"></div>
+				</div>
+			</template>
+			<div v-else-if="error" class="error">
 				{{ error }}
 			</div>
 			<template v-else>
 				<sl-category
 					v-for="category in categories"
+					:key="category.cat"
 					:category="category"
+					:search-query="searchQuery"
 				/>
 			</template>
 		</main>
 	</div>
-    <sl-footer />
+	<sl-footer />
 </template>
 
 <style lang="scss">
-@keyframes rotateloader {
-	from {
-		transform: rotate(0deg);
-	}
-
-	to {
-		transform: rotate(359deg);
-	}
-}
-
-.loading,
 .error {
     text-align: center;
     width: 100%;
@@ -120,11 +133,4 @@ const setVisits = () => {
     justify-content: center;
     gap: 10px;
 }
-
-.loading {
-	img {
-		animation: rotateloader 1.5s infinite linear;
-	}
-}
-
 </style>

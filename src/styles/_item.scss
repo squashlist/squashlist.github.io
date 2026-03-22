@@ -1,7 +1,7 @@
 .item {
-    transition: right 0.3s, transform 0.3s;
+    transition: right 0.3s, transform 0.3s, box-shadow 0.2s;
     display: block;
-    background: $gray-superlight;
+    background: var(--sl-bg-item);
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 0 $border-radius 0 0;
@@ -9,21 +9,37 @@
     text-decoration: none;
 
     p {
-        color: $gray-dark;
+        color: var(--sl-text);
         text-decoration: none;
         margin: 0;
 
         &:not(.desc) {
-            color: rgb(74, 74, 222);
+            color: var(--sl-link);
             margin: 0 0 10px 0;
             display: flex;
+            align-items: center;
+            gap: 5px;
             text-decoration: underline;
         }
     }
 
     .money-icon {
         margin-left: auto;
-        color: $gray
+        color: var(--sl-text-muted);
+        flex-shrink: 0;
     }
 
+    .new-badge {
+        background: $red;
+        color: white;
+        font-size: 0.65rem;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        flex-shrink: 0;
+    }
 }
