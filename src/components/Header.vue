@@ -95,6 +95,14 @@ onMounted(() => {
                 <img src="/sl-logo.svg" class="logo" alt="Squashlist logo" width="172" height="24" />
             </div>
 
+            <input
+                v-model="searchQuery"
+                type="search"
+                placeholder="Search all resources..."
+                class="search-input"
+                aria-label="Search resources"
+            />
+
             <div class="header-controls">
                 <!-- Dark mode toggle -->
                 <button
@@ -126,17 +134,6 @@ onMounted(() => {
                     </button>
                 </div>
             </div>
-        </div>
-
-        <!-- ── Search bar ──────────────────────────────────────────────────── -->
-        <div class="search-row">
-            <input
-                v-model="searchQuery"
-                type="search"
-                placeholder="Search all resources..."
-                class="search-input"
-                aria-label="Search resources"
-            />
         </div>
 
         <h1 class="sr-only">Squash sites, apps, &amp; resources</h1>

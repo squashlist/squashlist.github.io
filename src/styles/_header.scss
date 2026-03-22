@@ -13,26 +13,29 @@
     }
 
     .skip {
-        flex-basis: 50px;
-        flex-shrink: 0;
         position: relative;
 
         a {
             position: absolute;
             top: 10px;
             left: 10px;
+            background: black;
+            color: white;
+            padding: 10px;
+            display: inline-block;
+            white-space: nowrap;
         }
     }
 
     .logo-wrapper {
-        flex-grow: 1;
         display: flex;
-        justify-content: center;
-        height: 100%;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 0 12px;
     }
 
     .logo {
-        margin: 20px 0 8px;
+        display: block;
 
         [data-theme="dark"] & {
             filter: invert(1) brightness(1.8);
@@ -75,7 +78,7 @@
     }
 
     .suggest {
-        > button {
+        >button {
             background: none;
             padding: 6px 8px;
             margin: 0;
@@ -116,6 +119,7 @@
             }
 
             @media screen and (min-width: 800px) {
+
                 &:focus,
                 &:active,
                 &:hover {
@@ -127,18 +131,11 @@
         }
     }
 
-    // ── Search bar row ─────────────────────────────────────────────────────────
-    .search-row {
-        height: $search-bar-height;
-        display: flex;
-        align-items: center;
-        padding: 0 12px 8px;
-        gap: 8px;
-    }
-
+    // ── Search input (lives inside .header-top) ────────────────────────────────
     .search-input {
         flex: 1;
-        padding: 7px 12px;
+        height: 34px;
+        padding: 0 12px;
         border: 1px solid var(--input-border);
         border-radius: $border-radius;
         font-size: $base-size;
@@ -153,6 +150,37 @@
         &:focus {
             outline: 2px solid var(--text-link);
             outline-offset: -1px;
+        }
+    }
+
+    @media (min-width: 601px) {
+        .search-input {
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+    }
+
+    // ── Mobile: wrap search to its own row beneath logo + controls ─────────────
+    @media (max-width: 600px) {
+        .header-top {
+            height: auto;
+            flex-wrap: wrap;
+            padding-top: 10px;
+            padding-bottom: 8px;
+        }
+
+        .header-controls {
+            flex-basis: auto;
+            margin-left: auto;
+        }
+
+        .search-input {
+            // Push below the first row (logo + controls)
+            order: 3;
+            flex: none;
+            width: calc(100% - 16px);
+            margin: 6px 8px 0;
         }
     }
 
@@ -209,6 +237,7 @@
     }
 
     form {
+
         input,
         select {
             padding: 10px 5px;
