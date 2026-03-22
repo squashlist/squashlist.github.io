@@ -2,18 +2,50 @@ html,
 body {
     padding: 0;
     margin: 0;
+    height: 100%;
 }
 
 html {
     font-size: $base-size;
     font-family: 'Roboto', sans-serif;
-    color: $gray-dark;
+    color: var(--text);
+    background: var(--bg);
 
     * {
         box-sizing: border-box;
     }
 }
 
+// ── Page layout using flexbox so no height calculations are needed ─────────────
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    line-height: 1.5;
+}
+
+.wrapper {
+    flex: 1;
+    overflow: hidden;
+
+    @media (max-width: 600px) {
+        overflow: auto;
+    }
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    overflow: auto;
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+    }
+}
+
+// ── Accessibility helpers ──────────────────────────────────────────────────────
 .sr-only {
     position: absolute;
     width: 1px;
@@ -36,16 +68,6 @@ html {
         clip: auto;
         white-space: normal;
     }
-}
-
-#app {
-    line-height: 1.5;
-}
-
-.container {
-    display: flex;
-    overflow: auto;
-    height: calc(100vh - #{ $header-height + $footer-height })
 }
 
 h2 {

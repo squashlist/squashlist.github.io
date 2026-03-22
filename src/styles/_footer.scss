@@ -1,16 +1,32 @@
 .footer {
     height: $footer-height;
-    text-align: right;
-    line-height: $footer-height;
-    font-size: small;
-    padding-right: 30px;
-    background: $gray-superlight;
-    border-top: 1px solid $gray-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
 
     img {
         width: 20px;
+        height: 20px;
         border-radius: 50%;
         vertical-align: middle;
-        margin-right: 5px;
+    }
+
+    a {
+        color: var(--text-link);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .visits {
+        color: var(--text-muted);
     }
 }

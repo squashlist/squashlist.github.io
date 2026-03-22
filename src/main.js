@@ -19,7 +19,11 @@ import {
     faArrowDownAZ,
     faArrowUpZA,
     faTv,
-    faMicrophone
+    faMicrophone,
+    faMoon,
+    faSun,
+    faChevronDown,
+    faChevronUp
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -37,7 +41,11 @@ library.add(
     faFaceSmile,
     faArrowDownAZ,
     faArrowUpZA,
-    faMicrophone
+    faMicrophone,
+    faMoon,
+    faSun,
+    faChevronDown,
+    faChevronUp
 )
 
 createApp(App)

@@ -1,0 +1,40 @@
+.cat-nav {
+    display: flex;
+    gap: 6px;
+    padding: 6px 12px;
+    height: $cat-nav-height;
+    overflow-x: auto;
+    align-items: center;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .cat-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 12px;
+        border: 1px solid var(--input-border);
+        border-radius: 20px;
+        background: none;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        font-family: 'Righteous', cursive;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s, border-color 0.15s;
+
+        &:hover {
+            background: var(--bg-card);
+            color: var(--text);
+            border-color: var(--text-muted);
+        }
+    }
+}

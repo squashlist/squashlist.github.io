@@ -1,29 +1,54 @@
 .item {
-    transition: right 0.3s, transform 0.3s;
+    transition: right 0.2s, transform 0.2s, box-shadow 0.2s;
     display: block;
-    background: $gray-superlight;
+    background: var(--bg-card);
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 0 $border-radius 0 0;
     position: relative;
     text-decoration: none;
 
+    // Hover: straighten card and lift it
+    &:hover {
+        box-shadow: 0 4px 14px var(--shadow);
+    }
+
     p {
-        color: $gray-dark;
+        color: var(--text);
         text-decoration: none;
         margin: 0;
 
         &:not(.desc) {
-            color: rgb(74, 74, 222);
+            color: var(--text-link);
             margin: 0 0 10px 0;
             display: flex;
+            align-items: center;
+            gap: 6px;
             text-decoration: underline;
         }
     }
 
     .money-icon {
         margin-left: auto;
-        color: $gray
+        color: var(--text-muted);
     }
 
+    .new-badge {
+        margin-left: auto;
+        background: var(--badge-bg);
+        color: var(--badge-text);
+        font-size: 0.6rem;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-family: 'Righteous', cursive;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        flex-shrink: 0;
+    }
+
+    // Disable tilt on mobile — too distracting in vertical layout
+    @media (max-width: 600px) {
+        transform: none !important;
+        right: auto !important;
+    }
 }
